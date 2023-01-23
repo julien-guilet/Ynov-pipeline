@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      
+      - name: Setup Python
+        uses: actions/setup-python@v4.5.0
+        
+      - name: Setup Flake8  
+        uses: suo/flake8-github-action@v1
+          
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: |
+          Lancement des tests flake8 :
+          flake8 app.py
+          Fin des tests flake8.
+
+
