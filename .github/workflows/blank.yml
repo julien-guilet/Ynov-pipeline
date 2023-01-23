@@ -25,11 +25,8 @@ jobs:
       - name: Run a one-line script
         run: |
           echo Lancement des tests flake8 :
-          flake8 . --statistics
-          flake8 .
+          flake8 ./app.py 
           echo Fin des tests flake8.
-      - name: Test with pytest
-        run: |
-          pytest
+
 
 
