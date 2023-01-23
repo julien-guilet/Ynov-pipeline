@@ -25,7 +25,7 @@ jobs:
       - name: Run a one-line script
         run: |
           echo Lancement des tests flake8 :
-          flake8 .
+          flake8 . --statistics
           echo Fin des tests flake8.
 
 
