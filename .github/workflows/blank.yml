@@ -25,11 +25,12 @@ jobs:
       - name : Checkout
         uses: actions/checkout@v3
         
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
+      
+      - name: Run Tests 
         run: |
           echo Lancement des tests flake8 :
           flake8 .
+          black --check .
           echo Fin des tests flake8.
 
 
