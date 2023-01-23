@@ -74,9 +74,9 @@ jobs:
 
       - name: Dependencies
         run: |
-        pip install pytest
-        pip install pytest-cov
-        
+          pip install pytest
+          pip install pytest-cov
+
       - name: Slack message
         run: |
           echo Pepiline terminé !
