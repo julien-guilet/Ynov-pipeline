@@ -42,4 +42,3 @@ run(host='localhost', port=8080, reloader=True)
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
-    
