@@ -12,6 +12,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    
       
       - name: Setup Python
         uses: actions/setup-python@v4.5.0
@@ -21,11 +22,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install flake8 pytest
           
+      - name : Checkout
+        uses: actions/checkout@v3
+        
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: |
           echo Lancement des tests flake8 :
-          flake8 app.py 
+          flake8 .
           echo Fin des tests flake8.
 
 
