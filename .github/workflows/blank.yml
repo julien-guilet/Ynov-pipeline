@@ -28,5 +28,8 @@ jobs:
           flake8 . --statistics
           flake8 .
           echo Fin des tests flake8.
+      - name: Test with pytest
+        run: |
+          pytest
 
 
