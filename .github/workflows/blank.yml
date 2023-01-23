@@ -29,7 +29,7 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-
+    needs: build
     steps:
       - uses: actions/checkout@v3
       - name: Setup Python 3.10
@@ -48,7 +48,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-
+    needs: test
     steps:
       - name: MEP
         run: echo "MEP on server"
@@ -62,3 +62,4 @@ jobs:
         run: |
           pip install requests
           python -c "import requests; exit(1) if requests.get('https://www.google.fr').status_code != 200 else exit(0)"
+          echo Done !
