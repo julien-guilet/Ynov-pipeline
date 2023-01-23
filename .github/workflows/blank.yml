@@ -26,7 +26,6 @@ jobs:
         run: |
           black . --check
 
-
   test:
     runs-on: ubuntu-latest
 
