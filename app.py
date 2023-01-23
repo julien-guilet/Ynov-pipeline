@@ -1,22 +1,20 @@
 from bottle import route, run, template
 
 
-@route('/')
+@route("/")
 def home():
-    return '<b>Homepage</b>!'
+    return "<b>Homepage</b>!"
 
 
-@route('/hello/<name>')
+@route("/hello/<name>")
 def index(name):
-    return template('<b>Hello {{name}}</b>!', name=name)
+    return template("<b>Hello {{name}}</b>!", name=name)
 
 
-@route('/add/<a>/<b>')
+@route("/add/<a>/<b>")
 def add(a, b):
     result = addCalc(a, b)
-    return {
-        "result": result
-    }
+    return {"result": result}
 
 
 def addCalc(a, b):
@@ -34,11 +32,12 @@ def addCalc(a, b):
     >>> addCalc(-10, 5)
     -5
     """
-    return (int(a) + int(b))
+    return int(a) + int(b)
 
 
-run(host='localhost', port=8080, reloader=True)
+run(host="localhost", port=8080, reloader=True)
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
