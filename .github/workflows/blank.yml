@@ -45,7 +45,7 @@ jobs:
 
       - name: Test with Pytest
         run: |
-          pytest --doctest-modules --ignore=main.py
+          pytest --doctest-modules 
 
   deploy:
     runs-on: ubuntu-latest
