@@ -32,16 +32,8 @@ jobs:
           flake8 .
           black --check .
           echo Fin des tests flake8.
-  cd :
-    runs-on: unbuntu-lastest
-    steps :
-      - name: Setup Python
-        uses: actions/setup-python@v4.5.0
-    
-      - name : Checkout
-        uses: actions/checkout@v3
-        
-      - name: Run app
+          
+      - name: Lancement de l'app
         run: |
           py ./app.py
           curl http://localhost:8080/hello/testname
