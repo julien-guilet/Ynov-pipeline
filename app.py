@@ -1,12 +1,15 @@
 from bottle import route, run, template
 
+
 @route('/')
 def home():
     return '<b>Homepage</b>!'
 
+
 @route('/hello/<name>')
 def index(name):
     return template('<b>Hello {{name}}</b>!', name=name)
+
 
 @route('/add/<a>/<b>')
 def add(a, b):
@@ -14,6 +17,7 @@ def add(a, b):
     return {
         "result": result
     }
+
 
 def addCalc(a, b):
     """
@@ -32,8 +36,10 @@ def addCalc(a, b):
     """
     return (int(a) + int(b))
 
+
 run(host='localhost', port=8080, reloader=True)
 
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+    
