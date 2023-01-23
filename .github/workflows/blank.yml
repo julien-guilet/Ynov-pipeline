@@ -25,8 +25,8 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: |
-          Lancement des tests flake8 :
+          echo Lancement des tests flake8 :
           /home/runner/.local/bin/flake8 app.py
-          Fin des tests flake8.
+          echo Fin des tests flake8.
 
 
