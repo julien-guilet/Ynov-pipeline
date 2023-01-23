@@ -17,6 +17,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install flake8 black
+          pip install bottle
 
       - name: Lint with flake8
         run: |
@@ -40,6 +41,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install pytest
+          pip install bottle
 
       - name: Test with Pytest
         run: |
@@ -60,4 +62,5 @@ jobs:
       - name: Test if website is up 🚀
         run: |
           pip install requests
+          pip install bottle
           python -c "import requests; exit(1) if requests.get('https://www.google.fr').status_code != 200 else exit(0)"
