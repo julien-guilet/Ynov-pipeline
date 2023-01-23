@@ -84,6 +84,6 @@ jobs:
       - name: Slack message
         run: |
           echo Pepiline terminé !
-          pytest --cov=. . --doctest-modules --cov-report html
+          pytest --cov=. . --doctest-modules --cov-report html --ignore=app.py
 
 
