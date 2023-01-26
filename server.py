@@ -1,20 +1,15 @@
+from functions import add
 from bottle import route, run, template
-from misc import add
 
 
 @route("/hello/<name>")
 def index(name):
-    return template("<b>Hello {{name}}</b>!", name=name)
-
-
-@route("/")
-def homepage():
-    return "<b>Hello you</b>!"
+    return template("<b>Hello My Dear {{name}}</b>!", name=name)
 
 
 @route("/add/<a>/<b>")
 @route("/add/<a>/<b>/")
-def route_add(a, b):
+def addition(a, b):
     return {"result": add(a, b)}
 
 

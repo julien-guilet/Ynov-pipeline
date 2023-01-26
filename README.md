@@ -1,1 +1,3 @@
-https://img.shields.io/gitlab/pipeline-coverage/Ynov-pipeline?branch=main
+# Ynov-pipelines
+
+![example workflow](https://github.com/Hostie/Ynov-pipelines/actions/workflows/main.yml/badge.svg)

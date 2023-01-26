@@ -1,6 +1,18 @@
 name: YNOV pipeline CI/CD
 
-on: [push, workflow_dispatch] 
+
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      server-python-version:
+        type: choice
+        description: Which Python version will be runned on production server?
+        options:
+        - "3.9"
+        - "3.10"
+        - "3.11"
+        required: true
 
 jobs:
   build:
@@ -17,7 +29,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install flake8 black
-          pip install bottle
 
       - name: Lint with flake8
         run: |
@@ -30,25 +41,33 @@ jobs:
   test:
     runs-on: ubuntu-latest
     needs: build
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10", "3.11"]
+
     steps:
       - uses: actions/checkout@v3
-      - name: Setup Python 3.10
+      - name: Setup Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: ${{ matrix.python-version }}
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install pytest
+          pip install pytest-cov
 
-      - name: Test with Pytest 
+
+      - name: Test with Pytest
         run: |
-          pytest
+          pytest --doctest-modules --ignore=server.py
+          pytest --cov=.  . --doctest-modules --ignore=server.py --cov-report html:cov_html
 
   deploy:
     runs-on: ubuntu-latest
     needs: test
+
     steps:
       - name: MEP
         run: echo "MEP on server"
@@ -62,28 +81,12 @@ jobs:
         run: |
           pip install requests
           python -c "import requests; exit(1) if requests.get('https://www.google.fr').status_code != 200 else exit(0)"
-  Reporting:
+
+  post-on-slack:
     runs-on: ubuntu-latest
-    if: ${{ always() }}
     needs: deploy
+    if: always()
+
     steps:
-
-      - uses: actions/checkout@v3
-      - name: Setup Python 3.10
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-
-      - name: Dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install bottle
-          pip install pytest
-          pip install pytest-cov
-
       - name: Slack message
-        run: |
-          echo Pepiline terminé !
-          pytest --cov=. . --doctest-modules --cov-report html --ignore=app.py
-
-
+        run: echo "Everything's alright, or not..."
